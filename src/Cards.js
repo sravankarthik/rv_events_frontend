@@ -27,9 +27,11 @@ export default function Cards() {
         return <MDBCol>
             <MDBCard className='h-100'>
                 <MDBCardImage
-                    src='https://mdbootstrap.com/img/new/standard/city/041.webp'
+                    src={value.logo || "https://images.immediate.co.uk/production/volatile/sites/3/2023/08/2023.06.28-06.20-boundingintocomics-649c79f009cdf-Cropped-8d74232.png?resize=768,574"}
                     alt='...'
                     position='top'
+                    height={300}
+                    width={300}
                 />
                 <MDBCardBody>
                     <MDBCardTitle>{value.name}</MDBCardTitle>

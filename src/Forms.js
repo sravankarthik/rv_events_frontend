@@ -8,6 +8,12 @@ import axios from "axios";
 import { API } from './backend';
 
 function Forms() {
+  const fruitImages = {
+    KANNADA_SANGHA: 'https://media.discordapp.net/attachments/823879741429514281/1186964592430166026/WhatsApp_Image_2023-12-20_at_14.54.04.jpeg?ex=659529eb&is=6582b4eb&hm=bd709e435af0410fd175b436b200fcb6233bd3692ec284698a9050523eb9eab3&=&format=webp&width=1024&height=1024',
+    FOOTPRINTS: 'https://media.discordapp.net/attachments/823879741429514281/1186964593336127529/WhatsApp_Image_2023-12-20_at_14.54.03_2.jpeg?ex=659529eb&is=6582b4eb&hm=404bfcf930fbd083dfb13fda9688f4003ab389485ad858fd811a7b2f361a28cb&=&format=webp&width=732&height=1024',
+    ASHWA: 'https://media.discordapp.net/attachments/823879741429514281/1186964594711859231/Screenshot_2023-12-20_at_3.01.07_PM.png?ex=659529ec&is=6582b4ec&hm=66787b1c0f59a1025eaf80f674211c7e67b9f6c59000b5685cf6a36b42bd421d&=&format=webp&quality=lossless&width=1082&height=1024',
+    // Add more fruits and image URLs as needed
+  };
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -16,7 +22,8 @@ function Forms() {
     description: '',
     date: '',
     timefrom: '',
-    timeto: ''
+    timeto: '',
+    logo: ''
   });
 
   const handleInputChange = (event) => {
@@ -40,6 +47,10 @@ function Forms() {
       console.error('Error:', error);
     }
   };
+  const handleFruitChange = (event) => {
+    const selectedFruit = event.target.value;
+    setFormData({ ...formData, logo: fruitImages[selectedFruit] });
+  };
 
   return (
     <div>
@@ -59,6 +70,21 @@ function Forms() {
             <Form.Control type="password" placeholder="Password" name="password"
               value={formData.password}
               onChange={handleInputChange} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Club</Form.Label>
+            <Form.Select
+              name="logo"
+              value={formData.selectedFruit}
+              onChange={handleFruitChange}
+            >
+              <option value="">Select Club</option>
+              {Object.keys(fruitImages).map((fruit, index) => (
+                <option key={index} value={fruit}>
+                  {fruit}
+                </option>
+              ))}
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3" >
             <Form.Label>Event Name</Form.Label>
