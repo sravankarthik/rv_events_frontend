@@ -1,1 +1,1 @@
-export const API = "http://localhost:8000/api";
+export const API = "https://rv-events-backend.onrender.com/api";
